@@ -10,12 +10,16 @@ export default class ReviewsDAO {
         }
         try {
             reviews = await conn.db(process.env.RESTREVIEWS_NS).collection("reviews")
+            /* console.log("REVIEWS: " + reviews[0]) */
         } catch (e) {
             console.error(`Unable to establish collection handles in userDAO: ${e}`)
         }
     }
 
     static async addReview(restaurantId, user, review, date) {
+
+
+
         try {
             const reviewDoc = {
                 name: user.name,
@@ -24,6 +28,9 @@ export default class ReviewsDAO {
                 text: review,
                 restaurant_id: ObjectId(restaurantId),
             }
+
+            console.log("Review Doc: " + JSON.stringify(reviewDoc))
+
 
             return await reviews.insertOne(reviewDoc)
         } catch (e) {

@@ -78,7 +78,7 @@ export default class RestaurantsDAO {
                             {
                                 $match: {
                                     $expr: {
-                                        $eq: ["$restaurant_id", "$$id"],
+                                        $eq: ["$$id", "$restaurant_id"],
                                     },
                                 },
                             },
